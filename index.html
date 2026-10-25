@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#292C30">
+
+  <title>S.T.E. di Ugo Frau | Enologia Mobile</title>
+  <meta name="description" content="S.T.E. di Ugo Frau: servizi tecnici enologici, imbottigliamento mobile, capsulatura ed etichettatura in Sardegna.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --sfondo: #E8EAED;
+      --scheda: #292C30;
+      --bordeaux: #8C3045;
+      --bordeaux-chiaro: #B44A60;
+      --testo: #F5F2F1;
+      --secondario: #C9C4C5;
+      --bianco: #FFFFFF;
+    }
+
+    body {
+      margin: 0;
+      padding: 24px 16px;
+      min-height: 100vh;
+      background: var(--sfondo);
+      color: var(--testo);
+      font-family: Arial, Helvetica, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      padding: 28px 24px;
+      background: var(--scheda);
+      border: 1px solid #494044;
+      border-radius: 22px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .logo {
+      display: block;
+      width: 100%;
+      max-width: 340px;
+      height: auto;
+      max-height: 210px;
+      object-fit: contain;
+      margin: 0 auto 20px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 27px;
+      line-height: 1.2;
+      color: var(--testo);
+    }
+
+    .sottotitolo {
+      color: var(--bordeaux-chiaro);
+      font-weight: bold;
+      font-size: 14px;
+      letter-spacing: 1px;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .linea {
+      width: 70px;
+      height: 3px;
+      border: 0;
+      border-radius: 3px;
+      background: var(--bordeaux);
+      margin: 20px auto;
+    }
+
+    .descrizione {
+      color: var(--testo);
+      font-size: 15px;
+      line-height: 1.7;
+      margin: 0 0 12px;
+    }
+
+    .servizi {
+      color: var(--secondario);
+      font-size: 14px;
+      line-height: 1.8;
+      margin: 0 0 24px;
+    }
+
+    .pulsante {
+      display: block;
+      width: 100%;
+      padding: 15px 18px;
+      margin-top: 12px;
+      border-radius: 11px;
+      background: var(--bianco);
+      color: var(--scheda);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      border: 1px solid var(--bianco);
+      transition: transform 0.15s ease;
+    }
+
+    .pulsante:hover {
+      transform: translateY(-2px);
+    }
+
+    .pulsante.salva {
+      color: var(--bordeaux);
+      border-color: var(--bordeaux-chiaro);
+    }
+
+    footer {
+      color: var(--secondario);
+      font-size: 12px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 360px) {
+      .card {
+        padding: 22px 17px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+
+    <img
+      class="logo"
+      src="STE.png"
+      alt="Logo S.T.E. Servizi Tecnici Enologici"
+    >
+
+    <h1>S.T.E. di Ugo Frau</h1>
+
+    <p class="sottotitolo">
+      SERVIZI TECNICI ENOLOGICI
+    </p>
+
+    <hr class="linea">
+
+    <p class="descrizione">
+      Enologia mobile e imbottigliamento direttamente in cantina,
+      con servizi dedicati alle aziende vitivinicole in tutta la Sardegna.
+    </p>
+
+    <p class="servizi">
+      Capsulatura · Etichettatura<br>
+      Lavorazioni e servizi in cantina
+    </p>
+
+    <a class="pulsante"
+       href="tel:+393497126604">
+      ☎ Chiama
+    </a>
+
+    <a class="pulsante"
+       href="https://wa.me/393497126604"
+       target="_blank"
+       rel="noopener noreferrer">
+      WhatsApp
+    </a>
+
+    <a class="pulsante salva"
+       href="#"
+       id="salvaContatto">
+      Salva contatto in rubrica
+    </a>
+
+    <footer>
+      S.T.E. · Servizi Tecnici Enologici
+    </footer>
+
+  </main>
+
+  <script>
+    document.getElementById("salvaContatto").addEventListener(
+      "click",
+      function (event) {
+        event.preventDefault();
+
+        const vcard = [
+          "BEGIN:VCARD",
+          "VERSION:3.0",
+          "FN:S.T.E. di Ugo Frau",
+          "ORG:S.T.E. - Servizi Tecnici Enologici",
+          "TEL;TYPE=CELL,VOICE:+393497126604",
+          "URL:https://wa.me/393497126604",
+          "NOTE:Enologia mobile, imbottigliamento, capsulatura, etichettatura e servizi in cantina in Sardegna.",
+          "END:VCARD"
+        ].join("\r\n") + "\r\n";
+
+        const file = new Blob(
+          [vcard],
+          { type: "text/vcard;charset=utf-8" }
+        );
+
+        const url = URL.createObjectURL(file);
+        const link = document.createElement("a");
+
+        link.href = url;
+        link.download = "STE-Ugo-Frau.vcf";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        setTimeout(function () {
+          URL.revokeObjectURL(url);
+        }, 1000);
+      }
+    );
+  </script>
+</body>
+</html>
